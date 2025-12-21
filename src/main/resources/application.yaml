@@ -1,0 +1,60 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: warn
+    org:
+      springframework:
+        web: debug
+        data:
+          rest: debug
+
+spring:
+  application:
+    name: gateway
+
+  web:
+    error:
+      include-message: always
+      include-binding-errors: always
+
+  jackson:
+    time-zone: UTC
+    mapper:
+      "[ACCEPT_CASE_INSENSITIVE_ENUMS]": true
+
+springdoc:
+  swagger-ui:
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+
+      - url: /id/v3/api-docs
+        name: User Service
+
+      - url: /sc/v3/api-docs
+        name: Scrum Service
+
+      - url: /fi/v3/api-docs
+        name: Finance Service
+
+route:
+  services:
+    identity:
+      url: ${IDENTITY_URL:http://identity:8080/}
+      path: /id/
+
+    scrum:
+      url: ${SCRUM_URL:http://scrum:8080/}
+      path: /sc/
+
+    finance:
+      url: ${FINANCE_URL:http://finance:8080/}
+      path: /fi/
+
+security:
+  rsa:
+    public-key: classpath:certs/public-key.pem

@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "security.token.expiration-time",
+      "type": "java.lang.String",
+      "description": "The time that will be alive the token to be used"
+    },
+    {
+      "name": "security.token.time-unit",
+      "type": "java.time.temporal.ChronoUnit",
+      "description": "The unit of time that will be used in expiration time"
+    },
+    {
+      "name": "security.rsa.private-key",
+      "type": "java.security.interfaces.RSAPrivateKey",
+      "description": "The private key to use for sign JWT"
+    },
+    {
+      "name": "security.rsa.public-key",
+      "type": "java.security.interfaces.RSAPublicKey",
+      "description": "The public key to validate JWT"
+    },
+
+    {
+      "name": "route.services.identity.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.identity.path",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.scrum.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.scrum.path",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.finance.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.finance.path",
+      "type": "java.lang.String"
+    }
+  ]
+}
