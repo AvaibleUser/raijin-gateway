@@ -1,5 +1,6 @@
 package edu.raijin.gateway.infrastructure.adapter.config;
 
+import static org.springframework.cloud.gateway.server.mvc.filter.AfterFilterFunctions.removeResponseHeader;
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.rewritePath;
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.uri;
 import static org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions.route;
@@ -24,6 +25,7 @@ public class RoutesConfig {
                 .route(path(service.path() + "**"), http())
                 .before(uri(service.url()))
                 .before(rewritePath(service.path() + "(?<segment>.*)", "/${segment}"))
+                .after(removeResponseHeader("Access-Control-Allow-Origin"))
                 .build();
     }
 
@@ -33,6 +35,7 @@ public class RoutesConfig {
                 .route(path(service.path() + "**"), http())
                 .before(uri(service.url()))
                 .before(rewritePath(service.path() + "(?<segment>.*)", "/${segment}"))
+                .after(removeResponseHeader("Access-Control-Allow-Origin"))
                 .build();
     }
 
@@ -42,6 +45,7 @@ public class RoutesConfig {
                 .route(path(service.path() + "**"), http())
                 .before(uri(service.url()))
                 .before(rewritePath(service.path() + "(?<segment>.*)", "/${segment}"))
+                .after(removeResponseHeader("Access-Control-Allow-Origin"))
                 .build();
     }
 }
