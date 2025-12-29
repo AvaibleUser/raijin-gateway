@@ -14,6 +14,7 @@ import org.springframework.web.servlet.function.ServerResponse;
 
 import edu.raijin.gateway.infrastructure.adapter.config.property.FinanceServiceProperty;
 import edu.raijin.gateway.infrastructure.adapter.config.property.IdentityServiceProperty;
+import edu.raijin.gateway.infrastructure.adapter.config.property.InsightServiceProperty;
 import edu.raijin.gateway.infrastructure.adapter.config.property.ScrumServiceProperty;
 
 @Configuration
@@ -42,6 +43,16 @@ public class RoutesConfig {
     @Bean
     RouterFunction<ServerResponse> routeFinance(FinanceServiceProperty service) {
         return route("finance")
+                .route(path(service.path() + "**"), http())
+                .before(uri(service.url()))
+                .before(rewritePath(service.path() + "(?<segment>.*)", "/${segment}"))
+                .after(removeResponseHeader("Access-Control-Allow-Origin"))
+                .build();
+    }
+
+    @Bean
+    RouterFunction<ServerResponse> routeInsight(InsightServiceProperty service) {
+        return route("insight")
                 .route(path(service.path() + "**"), http())
                 .before(uri(service.url()))
                 .before(rewritePath(service.path() + "(?<segment>.*)", "/${segment}"))

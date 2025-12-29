@@ -41,6 +41,9 @@ springdoc:
       - url: /fi/v3/api-docs
         name: Finance Service
 
+      - url: /in/v3/api-docs
+        name: Insight Service
+
 route:
   services:
     identity:
@@ -54,6 +57,10 @@ route:
     finance:
       url: ${FINANCE_URL:http://finance:8080/}
       path: /fi/
+
+    insight:
+      url: ${INSIGHT_URL:http://insight:8080/}
+      path: /in/
 
 security:
   rsa:

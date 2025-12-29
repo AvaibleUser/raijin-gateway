@@ -44,6 +44,14 @@
     {
       "name": "route.services.finance.path",
       "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.insight.url",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "route.services.insight.path",
+      "type": "java.lang.String"
     }
   ]
 }
